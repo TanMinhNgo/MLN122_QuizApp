@@ -1,12 +1,12 @@
 import { Router } from 'express';
-import exampleRoutes from './exampleRoutes';
+import authRoutes from './auth.routes';
+import quizRoutes from './quiz.routes';
+import sessionRoutes from './session.routes';
 
 const router = Router();
 
-router.use('/example', exampleRoutes);
-
-// Register more routes here:
-// router.use('/users', userRoutes);
-// router.use('/products', productRoutes);
+router.use('/auth', authRoutes);
+router.use('/quizzes', quizRoutes);
+router.use('/sessions', sessionRoutes);
 
 export default router;
