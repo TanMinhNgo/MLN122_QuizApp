@@ -1,29 +1,26 @@
-import express from 'express';
-import cors from 'cors';
-import dotenv from 'dotenv';
-import routes from './src/routes';
-import { errorHandler } from './src/middlewares/errorHandler';
-import { notFound } from './src/middlewares/notFound';
+import http from 'http';
+import app from './src/app';
+import { connectDB } from './src/config/database';
+import { initSocket } from './src/socket';
 import { ENV } from './src/config/env';
 
-dotenv.config();
+const bootstrap = async (): Promise<void> => {
+  // Kết nối MongoDB
+  await connectDB();
 
-const app = express();
+  // Tạo HTTP server từ Express app
+  const httpServer = http.createServer(app);
 
-// Middlewares
-app.use(cors({ origin: ENV.FRONTEND_URL }));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+  // Khởi tạo Socket.io
+  initSocket(httpServer);
 
-// API Routes
-app.use('/api', routes);
+  httpServer.listen(ENV.PORT, () => {
+    console.log(`Server đang chạy tại http://localhost:${ENV.PORT}`);
+    console.log(`Môi trường: ${ENV.NODE_ENV}`);
+  });
+};
 
-// 404 & Error handlers
-app.use(notFound);
-app.use(errorHandler);
-
-app.listen(ENV.PORT, () => {
-  console.log(`Server running on http://localhost:${ENV.PORT}`);
+bootstrap().catch((err) => {
+  console.error('Lỗi khởi động server:', err);
+  process.exit(1);
 });
-
-export default app;
