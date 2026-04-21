@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { QRCodeSVG } from 'qrcode.react';
 
 import { Player } from '@/types';
@@ -17,6 +18,15 @@ export function WaitingRoomHost({
 }: WaitingRoomHostProps) {
   return (
     <main className="mx-auto grid min-h-screen w-[min(1100px,calc(100%-2rem))] gap-5 py-8 lg:grid-cols-2">
+      <div className="lg:col-span-2">
+        <Link
+          href="/dashboard"
+          className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/4 px-3 py-2 text-sm font-semibold text-mln-dim transition hover:bg-white/10 hover:text-mln-cream"
+        >
+          ← Quay lại Dashboard
+        </Link>
+      </div>
+
       {/* QR + PIN section */}
       <section className="glass-card flex flex-col items-center justify-center gap-5 p-8">
         <p className="text-xs font-semibold uppercase tracking-widest text-mln-dim">

@@ -1,10 +1,21 @@
+import Link from 'next/link';
+
 interface WaitingRoomPlayerProps {
   nickname: string;
 }
 
 export function WaitingRoomPlayer({ nickname }: WaitingRoomPlayerProps) {
   return (
-    <main className="flex min-h-screen items-center justify-center px-4">
+    <main className="relative flex min-h-screen items-center justify-center px-4">
+      <div className="absolute left-4 top-4 sm:left-6 sm:top-6">
+        <Link
+          href="/tham-gia"
+          className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/4 px-3 py-2 text-sm font-semibold text-mln-dim transition hover:bg-white/10 hover:text-mln-cream"
+        >
+          ← Quay lại
+        </Link>
+      </div>
+
       <section className="mln-frame w-full max-w-md p-8 text-center animate-fade-in">
         <div className="mb-6 flex justify-center gap-1.5">
           <span className="size-2 animate-bounce rounded-full bg-mln-red" style={{ animationDelay: '0ms' }} />

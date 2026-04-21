@@ -39,10 +39,20 @@ export function useHostGame(sessionId: string): UseHostGameResult {
     setGameStatus,
     updateAnswerStats,
     setLeaderboard,
+    reset,
   } = useGameStore();
 
   // Guard: only join room once per socket connection
   const joinedRef = useRef(false);
+
+  // Reset store when switching to a different session
+  useEffect(() => {
+    if (!sessionId) {
+      return;
+    }
+    reset();
+    joinedRef.current = false;
+  }, [sessionId, reset]);
 
   // Join room effect — only runs when socket or sessionId changes
   useEffect(() => {

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { Option, Question } from '@/types';
 import { OptionEditor } from '@/components/host/OptionEditor';
@@ -12,6 +12,30 @@ const DEFAULT_OPTIONS: Option[] = [
   { id: 'c', text: '', isCorrect: false, color: '#f59e0b' },
   { id: 'd', text: '', isCorrect: false, color: '#22c55e' },
 ];
+
+function cloneDefaultOptions() {
+  return DEFAULT_OPTIONS.map((option) => ({ ...option }));
+}
+
+function getInitialFormState(question: Question | null) {
+  if (!question) {
+    return {
+      content: '',
+      timeLimit: 20,
+      points: 1000,
+      options: cloneDefaultOptions(),
+      correctIds: [] as string[],
+    };
+  }
+
+  return {
+    content: question.content,
+    timeLimit: question.timeLimit,
+    points: question.points,
+    options: question.options.map((option) => ({ ...option })),
+    correctIds: question.options.filter((option) => option.isCorrect).map((option) => option.id),
+  };
+}
 
 interface QuestionEditorProps {
   question: Question | null;
@@ -28,29 +52,46 @@ export function QuestionEditor({
   onSave,
   onDelete,
 }: QuestionEditorProps) {
-  const [content, setContent] = useState('');
-  const [timeLimit, setTimeLimit] = useState(20);
-  const [points, setPoints] = useState(1000);
-  const [options, setOptions] = useState<Option[]>(DEFAULT_OPTIONS);
-  const [correctIds, setCorrectIds] = useState<string[]>([]);
+  if (!question && !isNew) {
+    return (
+      <section className="glass-card flex min-h-50 items-center justify-center p-10 text-center text-mln-dim">
+        <p className="text-sm">Chọn hoặc thêm câu hỏi để bắt đầu biên soạn.</p>
+      </section>
+    );
+  }
 
-  useEffect(() => {
-    if (question) {
-      setContent(question.content);
-      setTimeLimit(question.timeLimit);
-      setPoints(question.points);
-      setOptions(question.options);
-      setCorrectIds(
-        question.options.filter((o) => o.isCorrect).map((o) => o.id),
-      );
-    } else {
-      setContent('');
-      setTimeLimit(20);
-      setPoints(1000);
-      setOptions(DEFAULT_OPTIONS);
-      setCorrectIds([]);
-    }
-  }, [question]);
+  const editorKey = question?._id ?? 'new-question';
+
+  return (
+    <QuestionEditorForm
+      key={editorKey}
+      question={question}
+      saving={saving}
+      onSave={onSave}
+      onDelete={onDelete}
+    />
+  );
+}
+
+interface QuestionEditorFormProps {
+  question: Question | null;
+  saving: boolean;
+  onSave: (data: Omit<Question, '_id' | 'order'>) => Promise<void>;
+  onDelete: () => void;
+}
+
+function QuestionEditorForm({
+  question,
+  saving,
+  onSave,
+  onDelete,
+}: QuestionEditorFormProps) {
+  const initial = getInitialFormState(question);
+  const [content, setContent] = useState(initial.content);
+  const [timeLimit, setTimeLimit] = useState(initial.timeLimit);
+  const [points, setPoints] = useState(initial.points);
+  const [options, setOptions] = useState<Option[]>(initial.options);
+  const [correctIds, setCorrectIds] = useState<string[]>(initial.correctIds);
 
   const handleToggleCorrect = (optionId: string) => {
     setCorrectIds([optionId]);
@@ -58,7 +99,9 @@ export function QuestionEditor({
 
   const handleOptionTextChange = (optionId: string, text: string) => {
     setOptions((prev) =>
-      prev.map((o) => (o.id === optionId ? { ...o, text } : o)),
+      prev.map((option) =>
+        option.id === optionId ? { ...option, text } : option,
+      ),
     );
   };
 
@@ -68,20 +111,12 @@ export function QuestionEditor({
       type: 'single',
       timeLimit,
       points,
-      options: options.map((o) => ({
-        ...o,
-        isCorrect: correctIds.includes(o.id),
+      options: options.map((option) => ({
+        ...option,
+        isCorrect: correctIds.includes(option.id),
       })),
     });
   };
-
-  if (!question && !isNew) {
-    return (
-      <section className="glass-card flex min-h-50 items-center justify-center p-10 text-center text-mln-dim">
-        <p className="text-sm">Chọn hoặc thêm câu hỏi để bắt đầu biên soạn.</p>
-      </section>
-    );
-  }
 
   return (
     <section className="glass-card p-6">

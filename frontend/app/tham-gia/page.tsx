@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { toast } from 'sonner';
 
+import LandingSwitchNav from '@/components/shared/LandingSwitchNav';
 import { useSessionStore } from '@/stores/sessionStore';
 
 function normalizePin(pin: string) {
@@ -38,7 +39,10 @@ export default function JoinPage() {
   };
 
   return (
-    <main className="relative flex min-h-screen items-center justify-center bg-mln-dark px-4">
+    <main className="relative min-h-screen bg-mln-dark">
+      <LandingSwitchNav />
+
+      <div className="flex min-h-[calc(100vh-65px)] items-center justify-center px-4 py-8">
       {/* Background glow */}
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute left-1/2 top-1/3 size-80 -translate-x-1/2 -translate-y-1/2 rounded-full bg-mln-red/8 blur-3xl" />
@@ -113,7 +117,7 @@ export default function JoinPage() {
 
             <div className="flex gap-3 pt-1">
               <Link
-                href="/"
+                href="/noi-dung"
                 className="flex-1 rounded-xl border border-white/10 bg-white/5 py-3 text-center font-semibold text-mln-dim transition duration-200 hover:border-white/20 hover:bg-white/10 hover:text-mln-cream"
               >
                 Hủy
@@ -130,6 +134,7 @@ export default function JoinPage() {
             </div>
           </form>
         </section>
+      </div>
       </div>
     </main>
   );

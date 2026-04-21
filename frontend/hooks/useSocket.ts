@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import type { Socket } from 'socket.io-client';
 
-import { connect, disconnect, getSocket } from '@/lib/socket';
+import { connect, getSocket } from '@/lib/socket';
 
 interface UseSocketResult {
   socket: Socket | null;
