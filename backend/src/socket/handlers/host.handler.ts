@@ -325,6 +325,11 @@ export const registerHostHandlers = (io: Server, socket: Socket): void => {
           const state = sessionStore.get(data.sessionId)!;
           state.hostSocketId = socket.id;
         }
+
+        // Send current player list to host immediately (prevents stale UI)
+        const nextState = sessionStore.get(data.sessionId);
+        const playerList = nextState ? [...nextState.players.values()] : [];
+        socket.emit(RoomEvent.PLAYER_JOINED, { players: playerList });
       } catch {
         socket.emit(RoomEvent.ERROR, {
           message: 'Xác thực thất bại. Vui lòng đăng nhập lại.',
