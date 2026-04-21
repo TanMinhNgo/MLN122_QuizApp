@@ -168,7 +168,7 @@ function AnimatedCounter({ target, suffix = '' }: { target: number; suffix?: str
 function Card({ children, className = '' }: { children: React.ReactNode; className?: string }) {
   return (
     <article
-      className={`rounded-2xl border border-white/14 bg-black/30 p-6 backdrop-blur-xl shadow-[0_10px_32px_rgba(0,0,0,0.32)] ${className}`}
+      className={`h-full rounded-2xl border border-white/14 bg-black/30 p-6 backdrop-blur-xl shadow-[0_10px_32px_rgba(0,0,0,0.32)] ${className}`}
     >
       {children}
     </article>
@@ -547,8 +547,8 @@ export default function ContentLandingPage() {
       </section>
 
       <section className="gsap-section px-6 pb-16">
-        <div className="mx-auto grid max-w-6xl gap-5 md:grid-cols-2">
-          <Reveal direction="left">
+        <div className="mx-auto grid max-w-6xl items-stretch gap-5 md:grid-cols-2">
+          <Reveal direction="left" className="h-full">
             <Card>
               <h3 className="font-title text-3xl text-[#f9edc3]">Giá trị (cơ sở tiền lương)</h3>
               <p className="mt-3 text-xl leading-relaxed text-[#f1e6c5]">
@@ -561,7 +561,7 @@ export default function ContentLandingPage() {
             </Card>
           </Reveal>
 
-          <Reveal direction="right" delay={80}>
+          <Reveal direction="right" delay={80} className="h-full">
             <Card className="border-[#d4a017]/40">
               <h3 className="font-title text-3xl text-[#f9edc3]">Giá trị sử dụng (tính năng đặc biệt)</h3>
               <p className="mt-3 text-xl leading-relaxed text-[#f1e6c5]">
@@ -624,8 +624,8 @@ export default function ContentLandingPage() {
             <p className="text-center font-label text-3xl text-[#d4a017]">G = c + (v + m)</p>
           </Reveal>
 
-          <div className="mt-6 grid gap-5 md:grid-cols-2">
-            <Reveal direction="left">
+          <div className="mt-6 grid items-stretch gap-5 md:grid-cols-2">
+            <Reveal direction="left" className="h-full">
               <Card>
                 <h3 className="font-title text-3xl text-[#f8e7c0]">Tư bản bất biến (c)</h3>
                 <p className="mt-3 font-kicker text-sm uppercase text-[#d4a017]">Khái niệm</p>
@@ -652,7 +652,7 @@ export default function ContentLandingPage() {
               </Card>
             </Reveal>
 
-            <Reveal direction="right" delay={80}>
+            <Reveal direction="right" delay={80} className="h-full">
               <Card className="border-[#d4a017]/45">
                 <h3 className="font-title text-3xl text-[#f8e7c0]">Tư bản khả biến (v)</h3>
                 <p className="mt-3 font-kicker text-sm uppercase text-[#d4a017]">Khái niệm</p>
@@ -687,8 +687,8 @@ export default function ContentLandingPage() {
       </section>
 
       <section className="gsap-section px-6 pb-16">
-        <div className="mx-auto grid max-w-6xl gap-5 md:grid-cols-2">
-          <Reveal direction="left">
+        <div className="mx-auto grid max-w-6xl items-stretch gap-5 md:grid-cols-2">
+          <Reveal direction="left" className="h-full">
             <Card>
               <h3 className="font-title text-3xl text-[#f8e7c0]">Tiền công</h3>
               <p className="mt-3 font-kicker text-sm uppercase text-[#d4a017]">Khái niệm</p>
@@ -722,7 +722,7 @@ export default function ContentLandingPage() {
             </Card>
           </Reveal>
 
-          <Reveal direction="right" delay={90}>
+          <Reveal direction="right" delay={90} className="h-full">
             <Card className="border-[#d4a017]/45">
               <h3 className="font-title text-3xl text-[#f8e7c0]">Tuần hoàn và chu chuyển tư bản</h3>
               <p className="mt-3 font-kicker text-sm uppercase text-[#d4a017]">Khái niệm</p>
@@ -758,8 +758,8 @@ export default function ContentLandingPage() {
       </section>
 
       <section className="gsap-section bg-[#5a1a16] px-6 py-16">
-        <div className="mx-auto grid max-w-6xl gap-6 md:grid-cols-2">
-          <Reveal direction="left">
+        <div className="mx-auto grid max-w-6xl items-stretch gap-6 md:grid-cols-2">
+          <Reveal direction="left" className="h-full">
             <Card className="border-[#d4a017]/35 bg-black/20">
               <p className="font-kicker text-5xl text-[#f6df9b]">8 GIỜ LÀM VIỆC</p>
               <ul className="mt-4 space-y-2 text-xl leading-relaxed text-[#f8e7c0]">
@@ -770,7 +770,7 @@ export default function ContentLandingPage() {
             </Card>
           </Reveal>
 
-          <Reveal direction="right" delay={90}>
+          <Reveal direction="right" delay={90} className="h-full">
             <Card className="border-[#f6df9b]/35 bg-black/20">
               <h3 className="font-title text-3xl text-[#f8e7c0]">Bản chất giá trị thặng dư</h3>
               <ol className="mt-4 space-y-3 text-lg leading-relaxed text-[#f2dfb5]">

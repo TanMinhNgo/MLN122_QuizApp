@@ -54,6 +54,10 @@ export default function LandingSwitchNav() {
             })}
           </div>
 
+          <Link href="/noi-dung/mindmap" className="hidden rounded-xl bg-linear-to-br from-mln-gold/70 to-mln-red/80 px-3 py-2 text-xs font-bold uppercase tracking-wider text-white shadow-lg shadow-black/25 transition hover:brightness-110 sm:inline-flex ml-2">
+            Mindmap
+          </Link>
+
           <Link
             href="/dashboard"
             className="hidden rounded-xl bg-linear-to-br from-mln-gold/70 to-mln-red/80 px-3 py-2 text-xs font-bold uppercase tracking-wider text-white shadow-lg shadow-black/25 transition hover:brightness-110 sm:inline-flex mx-2"
