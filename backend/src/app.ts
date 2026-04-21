@@ -20,8 +20,8 @@ app.use(helmet());
 // CORS — cho phép frontend kết nối
 app.use(
   cors({
-    origin: '*',
-    credentials: false,
+    origin: 'https://mln-122-quiz-app.vercel.app',
+    credentials: true,
   }),
 );
 
