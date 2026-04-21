@@ -20,8 +20,8 @@ app.use(helmet());
 // CORS — cho phép frontend kết nối
 app.use(
   cors({
-    origin: ENV.FRONTEND_URL,
-    credentials: true,
+    origin: '*',
+    credentials: false,
   }),
 );
 
