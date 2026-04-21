@@ -8,7 +8,7 @@ function matches(pathname: string, patterns: RegExp[]) {
   return patterns.some((pattern) => pattern.test(pathname));
 }
 
-export function proxy(request: NextRequest) {
+export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const accessToken = request.cookies.get("accessToken")?.value;
 
