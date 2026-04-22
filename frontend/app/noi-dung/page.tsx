@@ -489,7 +489,7 @@ export default function ContentLandingPage() {
           ref={formulaRightRef}
           className="pointer-events-none absolute right-4 top-34 font-label text-4xl text-[#d4a017]/16 sm:text-6xl"
         >
-          T&apos; = T + m
+          T&apos; = T + t
         </p>
 
         <div className="relative z-10 mx-auto max-w-6xl">
@@ -516,7 +516,7 @@ export default function ContentLandingPage() {
 
           <Reveal delay={240}>
             <div className="gsap-hero mt-8 inline-flex rounded-xl border border-[#d4a017]/40 bg-[#d4a017]/10 px-5 py-3 font-label text-lg text-[#f6e2a3]">
-              T - H - T&apos; (T&apos; = T + m)
+              T - H - T&apos; (T&apos; = T + t)
             </div>
           </Reveal>
 
@@ -560,7 +560,7 @@ export default function ContentLandingPage() {
                 </p>
                 <ul className="mt-3 space-y-2 text-lg leading-relaxed text-[#f1e6c5]">
                   <li>
-                    Bỏ tiền đầu tư để thu tiền lớn hơn: T&apos; = T + m (m &gt;
+                    Bỏ tiền đầu tư để thu tiền lớn hơn: T&apos; = T + t (t &gt;
                     0).
                   </li>
                   <li>Mục đích: giá trị thặng dư (lợi nhuận).</li>
