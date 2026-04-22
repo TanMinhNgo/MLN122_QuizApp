@@ -515,7 +515,7 @@ export default function ContentLandingPage() {
           </Reveal>
 
           <Reveal delay={240}>
-            <div className="gsap-hero mt-8 inline-flex rounded-xl border border-[#d4a017]/40 bg-[#d4a017]/10 px-5 py-3 font-label text-lg text-[#f6e2a3]">
+            <div className="gsap-hero mt-8 inline-flex rounded-xl border border-[#d4a017]/40 bg-[#d4a017]/10 px-5 py-3 text-lg text-[#f6e2a3]">
               T - H - T&apos; (T&apos; = T + t)
             </div>
           </Reveal>
